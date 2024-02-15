@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const functionTodo = require('../Controllers/todosController');
+const { login } = require("../Controller/userController");
 
-
-router.post('/login',functionTodo.login);
+router.post('/login',login);
 router.get('/',functionTodo.getTodos);
 router.post('/',functionTodo.creatTodo);
 router.get('/:id',functionTodo.getTodo);
