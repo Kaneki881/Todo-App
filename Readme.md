@@ -10,8 +10,10 @@ Backend: Node.js, Express.js, Mongoose (MongoDB ODM), JWT authentication
 Database: MongoDB
 Installation:
 
-Clone the repository: git clone https://github.com/your-username/todo-app-rest-api.git
+Clone the repository: git clone https://github.com/Kaneki881/Todo-App 
+
 Install dependencies: npm install (or yarn install)
+
 Configuration:
 
 Create a .env file in the project root directory and add required environment variables:
@@ -19,6 +21,7 @@ MONGODB_URI: URI for your MongoDB connection
 JWT_SECRET: A secure secret key for JWT generation
 (Optional) PORT: Port on which the server will listen (defaults to 5000)
 Ensure you have MongoDB running and a database accessible.
+
 Usage:
 
 Start the server: npm start (or yarn start)
