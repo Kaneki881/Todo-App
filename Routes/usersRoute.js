@@ -4,8 +4,8 @@ const functionUser =require('../Controllers/usersController');
 const auth = require('../midlewares/authMiddleware');
 
 
-router.post('/login',auth,functionUser.login);
-router.get('/',functionUser.getUsers);
+router.post('/login',functionUser.login);
+router.get('/',auth,functionUser.getUsers);
 router.post('/',functionUser.creatUser);
 router.get('/:id',functionUser.getUser);
 router.put('/:id',functionUser.updateUser);
