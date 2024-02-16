@@ -14,6 +14,7 @@ try{
   const { title, description, completed } = req.body; 
   const newTodo = await Todo.create({ title, description, completed });
   res.send(newTodo);
+  res.json({message:"todo creating success"})
 } catch (error) {
     console.error(error);
     res.status(400).json({ message: 'Error creating todo' });

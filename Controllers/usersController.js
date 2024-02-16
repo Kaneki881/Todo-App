@@ -6,8 +6,8 @@ const bcrypt=require('bcrypt');
 const login = async (req,res)=>{
     const data = req.body;
     try{
-     const user = await User.findOne({username : data.username});
-     const pass = await bcrypt.compare(data.password,user.password);
+     const user = await User.findOne({username : user.username});
+     const pass = await bcrypt.compare(data.password,User.password);
     if(!user || !pass ){
         return res.status(401)
                    .json({message:"Incorrect username or password"})
@@ -16,18 +16,20 @@ const login = async (req,res)=>{
         res.header("Autorization","bearer "+token);
     }catch(err){
         res.status(500)
-        .json({message:" Oops!! Incorrect username or password"})
+        .json({message:" Oops!! Incorrect username or password"});
+        
     }
 
 }
 
 const getUsers = async (req,res)=>{
-    const users = await User.find();
+    const users = await User.find({});
     res.send(users);
 };
 const creatUser = async (req,res)=>{
     const user = await User.create();
     res.send(user);
+    res.json({message:"user has been created successfull"});
 }
 const getUser= async (req,res)=>{
     const id = req.params.id;
