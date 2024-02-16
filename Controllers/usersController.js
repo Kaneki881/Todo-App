@@ -4,16 +4,18 @@ const jwt = require('jsonwebtoken');
 const bcrypt=require('bcrypt');
 
 const login = async (req,res)=>{
-    const data = req.body;
+    const { username, password } = req.body;
     try{
-     const user = await User.findOne({username : user.username});
-     const pass = await bcrypt.compare(data.password,User.password);
+     const user = await User.findOne({ username });
+     const pass = await bcrypt.compare(password, User.password);
     if(!user || !pass ){
         return res.status(401)
                    .json({message:"Incorrect username or password"})
     }
-        const token = jwt.sign({username : data.username},process.env.SECRET);
-        res.header("Autorization","bearer "+token);
+        // const token = jwt.sign({ username }, process.env.SECRET);
+        const token = jwt.sign({ username }, "amine2024");
+      // amine => 
+        res.header("Autorization","Bearer " + token);
     }catch(err){
         res.status(500)
         .json({message:" Oops!! Incorrect username or password"});

@@ -1,16 +1,18 @@
-const jwt=require("jsonwebtoken")
+const jwt = require("jsonwebtoken");
 
-const  auth= (req,res,next)=>{
-    try{
-        const token =req.headers["Authorization"]
-        const email=jwt.verify(token?.split(" ")[1],process.env.SECRET)
-        if(email) return next()
-        res.status(401).send({Error: "Unauthorized ..."})
-    }catch(e){
-        res.status(401).send({Error: "Unauthorized ..."})
+const auth = (req, res, next) => {
+  try {
+    let token = req.headers["Authorization"];
+    if ( req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
+        token = req.headers.authorization.split(' ')[1]; 
     }
-    
-    
-}
+   
+    const username = jwt.verify(token, "amine2024");
+    if ( username ) return next();
+    res.status(401).send({ Error: "Unauthorized ..." });
+  } catch (e) {
+    res.status(401).send({ Error: "Unauthorized ..." });
+  }
+};
 
-module.exports= auth;
+module.exports = { auth };
