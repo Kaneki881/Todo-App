@@ -6,6 +6,7 @@ const getTodos = async (req,res)=>{
     const todos = await Todo.find();
     res.send(todos);
 }catch(err){
+    console.log("err in get todo");
     res.status(500).json({ message: "there's no todos yet!" });
 }
 };
@@ -26,6 +27,7 @@ const getTodo= async (req,res)=>{
     const todo = await Todo.findById(id);
     res.send(todo);
       }catch (error) {
+        console.log("err in get todo");
         res.status(500).json({ message: error.message });
     }
 }
@@ -44,6 +46,7 @@ const deleteTodo = async (req,res)=>{
     const todo = await Todo.findByIdAndDelete(id);
     res.send(todo);
 }catch(err){
+    console.log("err in get todo");
     res.status(500).json({ message: err.message });
 }
 }
